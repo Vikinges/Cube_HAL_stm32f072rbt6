@@ -115,9 +115,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
 HAL_TIM_Base_Start_IT (&htim6);
 
-//lcd_init;
-//lcd_xy(0,0);
-//lcd_put_string("Gpio measure");
+lcd_init;
+lcd_xy(0,0);
+lcd_put_string("Gpio measure");
   /* USER CODE END 2 */
 
   /* Infinite loop */
