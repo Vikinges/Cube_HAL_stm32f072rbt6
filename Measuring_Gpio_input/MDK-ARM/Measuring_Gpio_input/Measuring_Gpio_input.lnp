@@ -1,0 +1,27 @@
+--cpu Cortex-M0
+"measuring_gpio_input\startup_stm32f072xb.o"
+"measuring_gpio_input\system_stm32f0xx.o"
+"measuring_gpio_input\stm32f0xx_hal_rcc.o"
+"measuring_gpio_input\stm32f0xx_hal_i2c_ex.o"
+"measuring_gpio_input\stm32f0xx_hal_dma.o"
+"measuring_gpio_input\stm32f0xx_hal_rcc_ex.o"
+"measuring_gpio_input\stm32f0xx_hal_i2c.o"
+"measuring_gpio_input\stm32f0xx_hal.o"
+"measuring_gpio_input\stm32f0xx_hal_pwr.o"
+"measuring_gpio_input\stm32f0xx_hal_flash_ex.o"
+"measuring_gpio_input\stm32f0xx_hal_tim_ex.o"
+"measuring_gpio_input\stm32f0xx_hal_gpio.o"
+"measuring_gpio_input\stm32f0xx_hal_adc_ex.o"
+"measuring_gpio_input\stm32f0xx_hal_cortex.o"
+"measuring_gpio_input\stm32f0xx_hal_flash.o"
+"measuring_gpio_input\stm32f0xx_hal_adc.o"
+"measuring_gpio_input\stm32f0xx_hal_pwr_ex.o"
+"measuring_gpio_input\stm32f0xx_hal_tim.o"
+"measuring_gpio_input\main.o"
+"measuring_gpio_input\stm32f0xx_it.o"
+"measuring_gpio_input\stm32f0xx_hal_msp.o"
+"measuring_gpio_input\lcd.o"
+--library_type=microlib --strict --scatter "Measuring_Gpio_input\Measuring_Gpio_input.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Measuring_Gpio_input.map" -o Measuring_Gpio_input\Measuring_Gpio_input.axf
