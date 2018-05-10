@@ -1,0 +1,26 @@
+--cpu Cortex-M0
+"uart_sl_ms_struct_comand_for\startup_stm32f072xb.o"
+"uart_sl_ms_struct_comand_for\main.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_msp.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_it.o"
+"uart_sl_ms_struct_comand_for\system_stm32f0xx.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_pwr.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_pwr_ex.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_uart_ex.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_i2c_ex.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_tim_ex.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_rcc.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_rcc_ex.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_gpio.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_tim.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_uart.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_dma.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_cortex.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_flash.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_flash_ex.o"
+"uart_sl_ms_struct_comand_for\stm32f0xx_hal_i2c.o"
+--library_type=microlib --strict --scatter "Uart_Sl_Ms_struct_comand_for\Uart_Sl_Ms_struct_comand_for.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Uart_Sl_Ms_struct_comand_for.map" -o Uart_Sl_Ms_struct_comand_for\Uart_Sl_Ms_struct_comand_for.axf

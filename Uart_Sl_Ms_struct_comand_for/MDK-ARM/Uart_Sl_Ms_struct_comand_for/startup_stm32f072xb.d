@@ -1,0 +1,1 @@
+uart_sl_ms_struct_comand_for\startup_stm32f072xb.o: startup_stm32f072xb.s
