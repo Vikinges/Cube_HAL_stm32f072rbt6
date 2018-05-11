@@ -41,6 +41,11 @@
 #include "stm32f0xx_hal.h"
 
 /* USER CODE BEGIN Includes */
+     #define PROTOCOL_FAULT_TIMEOUT 			((uint8_t)0x01)
+     #define PROTOCOL_FAULT_BADCRC 			((uint8_t)0x02)
+     #define PROTOCOL_FAULT_UNKNOWNDATATYPE		((uint8_t)0x03)
+     #define PROTOCOL_FAULT_UNKNOWNPAYLOAD		((uint8_t)0x04)
+     #define PROTOCOL_FAULT_UNKNOWNLENGHT		((uint8_t)0x05)
 
 /* USER CODE END Includes */
 
@@ -49,10 +54,16 @@ UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+char Uart_texTX[]="Hi";
+uint8_t Uart_texRX[8]	;
 /* USER CODE END PV */
+// typedef struct
+// {	}Uart_Tx_OK_t ;	
 
-/* Private function prototypes -----------------------------------------------*/
+
+	
+	
+	/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART3_UART_Init(void);
@@ -98,17 +109,53 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  /* USER CODE END 2 */
+
+
+/* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 
-  /* USER CODE END WHILE */
+//  /* USER CODE END WHILE */
 
-  /* USER CODE BEGIN 3 */
+//  /* USER CODE BEGIN 3 */
 
+//		HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8); // Led 1
+//		HAL_Delay(100);
+//		HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_9); // Led 2
+//		HAL_Delay(100);
+//		
+//		
+////		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_8);  // Rele 1
+////		HAL_Delay(100);
+////		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_9);  // Rele 2
+//		
+//		
+////		HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_3); // Snubber 1
+////		HAL_Delay(100);
+////		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_2); // Snubber 2
+////		HAL_Delay(100);
+////		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_12); // Snubber 3
+////		HAL_Delay(100);
+////		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_10); // Snubber 4
+////
+//	
+	uint8_t uart_transmit[100];		
+
+	
+	for (uint8_t i =0; i<101;i++)
+	{	
+		uart_transmit[i]=i;
+	}
+	HAL_UART_Transmit_IT(&huart3, &uart_transmit[0],sizeof(uart_transmit));
+	HAL_Delay(1000);
+
+
+		
+// HAL_UART_Transmit_IT(&huart3,(uint8_t*)Uart_texTX,sizeof(Uart_texTX));		
+		
   }
   /* USER CODE END 3 */
 
@@ -166,6 +213,7 @@ static void MX_USART3_UART_Init(void)
 
   huart3.Instance = USART3;
   huart3.Init.BaudRate = 38400;
+  huart3.Init.WordLength = UART_WORDLENGTH_8B;
   huart3.Init.StopBits = UART_STOPBITS_1;
   huart3.Init.Parity = UART_PARITY_NONE;
   huart3.Init.Mode = UART_MODE_TX_RX;
@@ -231,10 +279,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PB3 PB8 PB9 */
-  GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_8|GPIO_PIN_9;
+  /*Configure GPIO pin : PB3 */
+  GPIO_InitStruct.Pin = GPIO_PIN_3;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PB8 PB9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
