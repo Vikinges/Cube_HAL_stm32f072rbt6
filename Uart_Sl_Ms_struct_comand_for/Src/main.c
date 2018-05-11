@@ -46,7 +46,7 @@
      #define PROTOCOL_FAULT_UNKNOWNDATATYPE		((uint8_t)0x03)
      #define PROTOCOL_FAULT_UNKNOWNPAYLOAD		((uint8_t)0x04)
      #define PROTOCOL_FAULT_UNKNOWNLENGHT		((uint8_t)0x05)
-
+ 
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -55,7 +55,11 @@ UART_HandleTypeDef huart3;
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 char Uart_texTX[]="Hi";
-uint8_t Uart_texRX[8]	;
+uint8_t Uart_texRX[100]	;
+uint8_t DATA=0;
+uint8_t RX_BUFFER_SIZE=0 ;
+char rx_buffer[sizeof(RX_BUFFER_SIZE)];
+
 /* USER CODE END PV */
 // typedef struct
 // {	}Uart_Tx_OK_t ;	
@@ -109,6 +113,16 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 
+//uint8_t uart_transmit[100];	
+
+//	for (uint8_t i =0; i<16;i++)
+//	{	
+//		rx_buffer[i]=0;
+//	}
+//	HAL_UART_Transmit_IT(&huart3,&rx_buffer[0],sizeof(rx_buffer));
+//	HAL_Delay(1000);
+
+
 
 
 /* USER CODE END 2 */
@@ -122,10 +136,7 @@ int main(void)
 
 //  /* USER CODE BEGIN 3 */
 
-//		HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8); // Led 1
-//		HAL_Delay(100);
-//		HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_9); // Led 2
-//		HAL_Delay(100);
+	
 //		
 //		
 ////		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_8);  // Rele 1
@@ -141,20 +152,25 @@ int main(void)
 ////		HAL_Delay(100);
 ////		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_10); // Snubber 4
 ////
-//	
-	uint8_t uart_transmit[100];		
 
-	
-	for (uint8_t i =0; i<101;i++)
-	{	
-		uart_transmit[i]=i;
-	}
-	HAL_UART_Transmit_IT(&huart3, &uart_transmit[0],sizeof(uart_transmit));
-	HAL_Delay(1000);
+HAL_UART_Receive_IT(&huart3,&DATA,1);
 
+//if (DATA !=0 )
+//{
+//rx_buffer[RX_BUFFER_SIZE++]=DATA;
+//HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8);
+//}
+
+//if (RX_BUFFER_SIZE>16)
+//{
+//HAL_UART_Transmit_IT(&huart3,(uint8_t*)rx_buffer,sizeof(rx_buffer));		
+//HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_9);
+//RX_BUFFER_SIZE=0;
+//}
+// HAL_UART_Transmit_IT(&huart3,(uint8_t*)Uart_texTX,sizeof(Uart_texTX));		
 
 		
-// HAL_UART_Transmit_IT(&huart3,(uint8_t*)Uart_texTX,sizeof(Uart_texTX));		
+HAL_UART_Transmit_IT(&huart3,(uint8_t*)DATA,sizeof(DATA));		
 		
   }
   /* USER CODE END 3 */
