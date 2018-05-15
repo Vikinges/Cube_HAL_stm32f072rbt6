@@ -131,7 +131,7 @@ void SysTick_Handler(void)
 void USART3_4_IRQHandler(void)
 {
   /* USER CODE BEGIN USART3_4_IRQn 0 */
-
+	HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8);
   /* USER CODE END USART3_4_IRQn 0 */
   HAL_UART_IRQHandler(&huart3);
   /* USER CODE BEGIN USART3_4_IRQn 1 */
